@@ -5,6 +5,9 @@ import Head from "next/head";
 import { Inter } from "next/font/google";
 // progress bar
 import NextNProgress from "nextjs-progressbar";
+// toast
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,6 +36,7 @@ const AppLayout = (props) => {
         <meta name="author" content="Harsh Jaiswani" />
 
         <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+        <link rel="manifest" href="manifest.json" />
 
         <meta name="twitter:title" content={title || defaultTitle} />
         <meta
@@ -40,9 +44,30 @@ const AppLayout = (props) => {
           content={description || defaultDescription}
         />
         <meta name="twitter:image" content={image || defaultImage} />
+
+        <noscript>
+          Give Power of Javascript to Your Browser Engine to Have Embrase the
+          Beauty of this App
+        </noscript>
       </Head>
-      <NextNProgress color="rgb(243,244,246)" />
-      {children}
+      <NextNProgress
+        color="rgb(243,244,246)"
+        options={{ showSpinner: false }}
+      />
+      <ToastContainer
+        position="top-right"
+        autoClose={2000}
+        hideProgressBar={true}
+        newestOnTop={true}
+        closeButton={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
+      <>{children}</>
     </main>
   );
 };
